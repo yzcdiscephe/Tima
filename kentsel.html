@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TİMA Asistan - Kentsel Dönüşüm</title>
+    <style>
+        body { background: #000; color: #d4af37; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; margin: 0; }
+        .ai-ring { width: 150px; height: 150px; border: 2px solid #d4af37; border-radius: 50%; box-shadow: 0 0 20px #d4af37; animation: pulse 2s infinite; margin-bottom: 30px; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+        button { background: #d4af37; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; color: black; }
+        .back { margin-top: 20px; color: #fff; text-decoration: none; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="ai-ring"></div>
+    <h2 id="status">Kentsel Dönüşüm Asistanı</h2>
+    <p id="msg">Size nasıl yardımcı olabilirim?</p>
+    <button onclick="asistanKonus()">ASİSTANI BAŞLAT</button>
+    <br>
+    <a href="index.html" class="back">Ana Sayfaya Dön</a>
+
+    <script>
+        function asistanKonus() {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "Merhaba, Tima Grup kentsel dönüşüm asistanına hoş geldiniz. Binanızın yenilenme süreci ve devlet destekleri hakkında bilgi almak ister misiniz?";
+            msg.lang = 'tr-TR';
+            msg.pitch = 1;
+            msg.rate = 0.9;
+            window.speechSynthesis.speak(msg);
+            document.getElementById('status').innerText = "Asistan Dinliyor...";
+        }
+    </script>
+</body>
+</html>
