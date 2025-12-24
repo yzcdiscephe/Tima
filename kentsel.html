@@ -29,7 +29,24 @@
     <script>
         function asistanKonus() {
             const msg = new SpeechSynthesisUtterance();
-            msg.text = "Tima Grup kentsel dönüşüm bilgilendirme merkezine hoş geldiniz. Kentsel dönüşüm sürecimiz üç ana aşamadan oluşur. Birincisi, ücretsiz risk analizi ve raporlama. İkincisi, mülk sahipleriyle tam uzlaşı ve mimari tasarım süreci. Üçüncüsü ise, devlet teşvikli kredi desteği ile binanızın depreme dayanıklı, lüks bir yapıya dönüştürülmesidir. Şimdi daha detaylı bilgi ve ücretsiz keşif için aşağıdaki WhatsApp butonuna tıklayabilirsiniz.";
+            msg.text = <script>
+    function asistanKonus() {
+        const msg = new SpeechSynthesisUtterance();
+        
+        // FATİH ÖZEL MEVZUAT METNİ
+        msg.text = "Tima Grup Fatih Kentsel Dönüşüm Bilgilendirme Hattına Hoş Geldiniz. İstanbul Fatih bölgesindeki binalarınız için güncel mevzuat şu şekildedir: Birincisi, Fatih genelinde binaların büyük çoğunluğu sit alanı veya tarihi eser komşuluğundadır. Bu sebeple projelerimizi Anıtlar Kurulu onayına uygun şekilde yürütüyoruz. İkincisi, yeni yasaya göre artık üçte iki çoğunluk değil, yüzde elli artı bir uzlaşma ile inşaat kararı alınabilmektedir. Üçüncüsü, Yarısı Bizden kampanyası kapsamında devletimiz konut başına bir buçuk milyon liraya varan hibe ve kredi desteği sunmaktadır. Tima Grup olarak Fatih'teki mülkleriniz için ücretsiz risk analizi ve hukuki süreç takibi yapmaktayız. Hemen bilgi almak için aşağıdaki WhatsApp butonuna tıklayabilirsiniz.";
+        
+        msg.lang = 'tr-TR';
+        msg.pitch = 1;
+        msg.rate = 1.2; // İstediğin gibi bir tık yavaşlattık (1.2 akıcı ve anlaşılırdır)
+        
+        window.speechSynthesis.speak(msg);
+        document.getElementById('status').innerText = "Fatih Mevzuat Bilgisi Veriliyor...";
+        
+        document.getElementById('waButton').style.display = 'inline-block';
+    }
+</script>
+
             msg.lang = 'tr-TR';
             msg.rate = 1.4; // Hızlandırıldı
             
