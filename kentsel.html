@@ -3,33 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TİMA Asistan - Fatih Mevzuat</title>
+    <title>TİMA Asistan | Güncel Fiyat ve Mevzuat</title>
     <style>
-        body { background: #fff; color: #1a1a1a; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; margin: 0; }
-        .ai-ring { width: 120px; height: 120px; border: 3px solid #b8860b; border-radius: 50%; animation: pulse 1.5s infinite; margin-bottom: 20px; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
-        .btn-main { background: #1a1a1a; border: none; padding: 18px 35px; font-weight: bold; cursor: pointer; border-radius: 50px; color: white; font-size: 1.1em; margin-bottom: 20px; }
-        .btn-wa { background: #25d366; color: white; text-decoration: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: none; margin-top: 10px; }
-        .back { margin-top: 30px; color: #666; text-decoration: none; font-size: 0.9em; border-bottom: 1px solid #ccc; }
+        :root { --gold: #b8860b; --black: #1a1a1a; }
+        body { background: #fff; color: var(--black); font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center; }
+        .ai-ring { width: 100px; height: 100px; border: 3px solid var(--gold); border-radius: 50%; animation: pulse 1.5s infinite; margin: 20px 0; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        
+        .info-card { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 10px; width: 90%; max-width: 500px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; }
+        .info-card:hover { border-color: var(--gold); background: #fffdf5; }
+        .info-card h3 { margin: 0; font-size: 1em; color: var(--gold); }
+        
+        .btn-wa { background: #25d366; color: white; text-decoration: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; margin-top: 20px; display: inline-block; }
+        .back { margin-top: 20px; color: #666; text-decoration: none; font-size: 0.8em; }
     </style>
 </head>
 <body>
     <div class="ai-ring"></div>
-    <h2 id="status">Fatih Kentsel Dönüşüm Uzmanı</h2>
-    <button class="btn-main" onclick="asistanKonus()">BİLGİLERİ SESLİ DİNLE</button>
-    <br>
-    <a id="waButton" href="https://wa.me/905320000000?text=Fatih%20kentsel%20dönüşüm%20mevzuatı%20hakkında%20bilgi%20almak%20istiyorum." class="btn-wa">WhatsApp'tan Teklif Al</a>
+    <h2 id="status">TİMA Akıllı Asistan</h2>
+    <p>Merak ettiğiniz konunun üzerine dokunun, asistan cevaplasın:</p>
+
+    <div class="info-card" onclick="cevapla('fiyat')">
+        <h3>💰 Güncel İnşaat Maliyetleri Nedir?</h3>
+    </div>
+    <div class="info-card" onclick="cevapla('destek')">
+        <h3>🏠 Devlet Desteği (Yarısı Bizden) Kaç TL?</h3>
+    </div>
+    <div class="info-card" onclick="cevapla('sure')">
+        <h3>⏳ Bina Yapımı Ne Kadar Sürer?</h3>
+    </div>
+    <div class="info-card" onclick="cevapla('fatih')">
+        <h3>🏛️ Fatih'te Metrekare Kaybı Olur mu?</h3>
+    </div>
+
+    <a href="https://wa.me/905320000000" class="btn-wa">Kişiye Özel Hesaplama İçin WhatsApp</a>
     <a href="index.html" class="back">← Ana Sayfaya Dön</a>
 
     <script>
-        function asistanKonus() {
+        function cevapla(konu) {
             const msg = new SpeechSynthesisUtterance();
-            msg.text = "Tima Grup Fatih Kentsel Dönüşüm Bilgilendirme Hattına Hoş Geldiniz. Fatih bölgesindeki binalarınız için mevzuat şöyledir: Birincisi, sit alanı ve tarihi eser komşuluğu nedeniyle projelerimizi Anıtlar Kurulu onayına uygun yürütüyoruz. İkincisi, yeni yasaya göre yüzde elli artı bir uzlaşma ile inşaat kararı alabiliyoruz. Üçüncüsü, Yarısı Bizden kampanyası ile devletimiz konut başına bir buçuk milyon liraya varan destek sunmaktadır. Tima Grup olarak ücretsiz risk analizi yapmaktayız. Hemen bilgi almak için aşağıdaki yeşil butona tıklayabilirsiniz.";
             msg.lang = 'tr-TR';
-            msg.rate = 1.2; 
+            msg.rate = 1.2;
+
+            if(konu === 'fiyat') {
+                msg.text = "2025 yılı güncel verilerine göre, lüks segment bir kentsel dönüşüm projesinde metrekare inşaat maliyeti ortalama yirmi beş bin ile otuz beş bin TL arasındadır. Malzeme kalitesine göre bu rakam değişkenlik gösterebilir.";
+            } else if(konu === 'destek') {
+                msg.text = "Yarısı Bizden kampanyası kapsamında, devletimiz hak sahiplerine yedi yüz bin lira hibe, yedi yüz bin lira kredi ve yüz bin lira tahliye desteği olmak üzere toplamda bir buçuk milyon lira destek sunmaktadır.";
+            } else if(konu === 'sure') {
+                msg.text = "Anıtlar Kurulu süreci hariç, inşaat ruhsatı alındıktan sonra projenin büyüklüğüne göre teslim süremiz on iki ile on sekiz ay arasında değişmektedir.";
+            } else if(konu === 'fatih') {
+                msg.text = "Fatih'teki binalar sit alanında olduğu için metrekare kaybı yaşanmaması adına mevcut haklarınızı koruyan özel projeler üretiyoruz. Yeni yasayla birlikte, eski bina oturum alanınızı korumak için azami gayret gösterilmektedir.";
+            }
+
+            window.speechSynthesis.cancel(); // Önceki konuşmayı durdur
             window.speechSynthesis.speak(msg);
-            document.getElementById('status').innerText = "Asistan Bilgi Veriyor...";
-            document.getElementById('waButton').style.display = 'inline-block';
+            document.getElementById('status').innerText = "Asistan Cevaplıyor...";
         }
     </script>
 </body>
