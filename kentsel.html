@@ -1,15 +1,44 @@
-<script>
-    function asistanKonus() {
-        const msg = new SpeechSynthesisUtterance();
-        // BURASI BİLGİ ALANI: İstediğin bilgileri buraya ekleyebilirsin.
-        msg.text = "Tima Grup kentsel dönüşüm bilgilendirme merkezine hoş geldiniz. Kentsel dönüşüm sürecimiz üç ana aşamadan oluşur. Birincisi, ücretsiz risk analizi ve raporlama. İkincisi, mülk sahipleriyle yüzde yüz uzlaşı ve mimari tasarım süreci. Üçüncüsü ise, devlet teşvikli kredi desteği ile binanızın depreme dayanıklı, lüks bir yapıya dönüştürülmesidir. Detaylar için hemen bizimle iletişime geçebilirsiniz.";
-        
-        msg.lang = 'tr-TR';
-        msg.pitch = 1;      // Ses tonu (1 normaldir)
-        msg.rate = 1.3;     // HIZ AYARI: 1.3 yaparak konuşmayı hızlandırdık. (1.5 daha da hızlandırır)
-        
-        window.speechSynthesis.speak(msg);
-        document.getElementById('status').innerText = "Asistan Bilgi Veriyor...";
-    }
-</script>
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TİMA Asistan - Kentsel Dönüşüm</title>
+    <style>
+        body { background: #000; color: #d4af37; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; margin: 0; }
+        .ai-ring { width: 120px; height: 120px; border: 3px solid #d4af37; border-radius: 50%; box-shadow: 0 0 20px #d4af37; animation: pulse 1.5s infinite; margin-bottom: 20px; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
+        .btn-main { background: #d4af37; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 50px; color: black; font-size: 1.1em; margin-bottom: 20px; transition: 0.3s; }
+        .btn-wa { background: #25d366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; display: none; transition: 0.3s; }
+        .back { margin-top: 30px; color: #888; text-decoration: none; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="ai-ring"></div>
+    <h2 id="status">Kentsel Dönüşüm Uzmanı</h2>
+    
+    <button class="btn-main" onclick="asistanKonus()">BİLGİ ALMAK İÇİN DOKUNUN</button>
+    
+    <a id="waButton" href="https://wa.me/905320000000?text=Kentsel%20dönüşüm%20hakkında%20teklif%20almak%20istiyorum." class="btn-wa">
+        WhatsApp'tan Teklif Al
+    </a>
+
+    <a href="index.html" class="back">← Ana Sayfaya Dön</a>
+
+    <script>
+        function asistanKonus() {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "Tima Grup kentsel dönüşüm bilgilendirme merkezine hoş geldiniz. Kentsel dönüşüm sürecimiz üç ana aşamadan oluşur. Birincisi, ücretsiz risk analizi ve raporlama. İkincisi, mülk sahipleriyle tam uzlaşı ve mimari tasarım süreci. Üçüncüsü ise, devlet teşvikli kredi desteği ile binanızın depreme dayanıklı, lüks bir yapıya dönüştürülmesidir. Şimdi daha detaylı bilgi ve ücretsiz keşif için aşağıdaki WhatsApp butonuna tıklayabilirsiniz.";
+            msg.lang = 'tr-TR';
+            msg.rate = 1.4; // Hızlandırıldı
+            
+            window.speechSynthesis.speak(msg);
+            document.getElementById('status').innerText = "Asistan Anlatıyor...";
+            
+            // Konuşma başlayınca WhatsApp butonunu göster
+            document.getElementById('waButton').style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
